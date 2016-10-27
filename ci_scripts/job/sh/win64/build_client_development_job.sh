@@ -69,15 +69,24 @@ echo {BUILD_CONFIG}: ${BUILD_CONFIG}
 echo {PLATFORM}: 	${PLATFORM}
 echo {PROJECT_FILE}: ${PROJECT_FILE}
 
+#./git_clean.sh
+python -u ${PROJECT_ROOT}/ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Source/HorizonUE4Build/Main.py \
+ 	 --buildclient  \
+	 --engine "${UE4_ENGINE_ROOT}" \
+	 --project "${PROJECT_FILE}" \
+	 --build_platform ${PLATFORM} \
+	 --build_config ${BUILD_CONFIG} \
+	 --archive "${ARCHIVE_DIR}"
 
-${UE4_ENGINE_ROOT}/Engine/Build/BatchFiles/RunUAT.bat" \
- -ScriptsForProject="${PROJECT_FILE}" BuildCookRun             \
- -nocompileeditor -nop4            \
- -project="${PROJECT_FILE}" \
- -cook -stage -archive -archivedirectory="${ARCHIVE_DIR}"     \
- -package -clientconfig=${BUILD_CONFIG} \
- -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
- -build -CrashReporter -utf8output -compile -createreleaseversion=${PLATFORM}
+
+#"${UE4_ENGINE_ROOT}/Engine/Build/BatchFiles/RunUAT.bat" \
+# -ScriptsForProject="${PROJECT_FILE}" BuildCookRun             \
+# -nocompileeditor -nop4            \
+# -project="${PROJECT_FILE}" \
+# -cook -stage -archive -archivedirectory="${ARCHIVE_DIR}"     \
+# -package -clientconfig=${BUILD_CONFIG} \
+# -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
+# -build -CrashReporter -utf8output -compile -createreleaseversion=${PLATFORM}
 
 
 

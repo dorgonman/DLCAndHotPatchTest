@@ -70,7 +70,7 @@ echo {PLATFORM}: 	${PLATFORM}
 echo {PROJECT_FILE}: ${PROJECT_FILE}
 
 
-EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Source/Util/get_shell_ext.py)
+EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Source/Util/get_ext.py)
 
 
 

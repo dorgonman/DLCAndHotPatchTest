@@ -80,15 +80,18 @@ EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Sour
 # -editorrecompile -progress -noubtmakefiles -NoHotReloadFromIDE -2015
 
 
-"${UE4_ENGINE_ROOT}/Engine/Build/BatchFiles/RunUAT.${EXT}" \
- -ScriptsForProject="${PROJECT_FILE}" BuildCookRun             \
- -nocompileeditor -nop4            \
+CMD=" \
+ "${UE4_ENGINE_ROOT}Engine/Build/BatchFiles/RunUAT.${EXT}" -ScriptsForProject="${PROJECT_FILE}" BuildCookRun \
+ -NoCompileEditor -NoP4  -Verbose -UTF8Output -NoCompile \
  -project="${PROJECT_FILE}" \
  -cook -stage -archive -archivedirectory="${ARCHIVE_DIR}"     \
- -package -clientconfig=${BUILD_CONFIG} \
+ -package  -clientconfig=${BUILD_CONFIG} \
  -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
- -build -CrashReporter -utf8output -compile
-
-
+ -build -CrashReporter \
+ "
+# -nocompile 
+ #UAT flag, if we want to compile Source\Programs\AutomationTool
+echo =======execute: ${CMD}
+${CMD}
 
 popd #pushd ${PROJECT_ROOT}

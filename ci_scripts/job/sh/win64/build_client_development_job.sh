@@ -63,13 +63,6 @@ ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${PLATFORM}/${GIT_BRANC
 mkdir -p ${ARCHIVE_DIR}
 ARCHIVE_DIR=$(cd "${ARCHIVE_DIR}"; pwd)
 
-echo {PROJECT_ROOT}: ${PROJECT_ROOT}
-echo {ARCHIVE_DIR}: ${ARCHIVE_DIR}
-echo {BUILD_CONFIG}: ${BUILD_CONFIG}
-echo {PLATFORM}: 	${PLATFORM}
-echo {PROJECT_FILE}: ${PROJECT_FILE}
-
-
 EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Source/Util/get_shell_ext.py)
 
 
@@ -82,12 +75,12 @@ EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Sour
 
 CMD=" \
  '${UE4_ENGINE_ROOT}Engine/Build/BatchFiles/RunUAT.${EXT}' -ScriptsForProject='${PROJECT_FILE}' BuildCookRun \
- -NoCompileEditor -NoP4  -Verbose -UTF8Output -NoCompile \
+ -NoCompileEditor -NoP4  -Verbose -UTF8Output -NoCompile -CrashReporter\
  -project='${PROJECT_FILE}' \
- -cook -stage -archive -archivedirectory='${ARCHIVE_DIR}'     \
+ -cook -map= -unversionedcookedcontent -pak -compressed -stage -archive -archivedirectory='${ARCHIVE_DIR}'     \
  -package  -clientconfig=${BUILD_CONFIG} \
  -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
- -build -CrashReporter \
+ -build  -createreleaseversion=${PLATFORM} \
  "
 # -nocompile 
  #UAT flag, if we want to compile Source\Programs\AutomationTool

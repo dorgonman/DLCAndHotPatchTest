@@ -33,8 +33,8 @@ UE4_ENGINE_ROOT=${1}
 if  [ "${UE4_ENGINE_ROOT}" = "" ]
 then
 	echo "UE4_ENGINE_ROOT not Exists"
-   	UE4_ENGINE_ROOT=/d/UnrealEngine/UnrealEngineGit/
-   	#UE4_ENGINE_ROOT="/d/UnrealEngine/Epic Games/4.13/"
+   	#UE4_ENGINE_ROOT=/d/UnrealEngine/UnrealEngineGit/
+   	UE4_ENGINE_ROOT="/d/UnrealEngine/Epic Games/4.13/"
 
 else
    echo "ENV UE4_ENGINE_ROOT Exists"
@@ -74,24 +74,24 @@ EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Sour
 
 
 
-#"${UE4_ENGINE_ROOT}/Engine/Binaries/DotNET/UnrealBuildTool.exe"  \
-# ${PROJECT_NAME} ${PLATFORM} ${BUILD_CONFIG}\
-# -project="${PROJECT_FILE}"      \
-# -editorrecompile -progress -noubtmakefiles -NoHotReloadFromIDE -2015
+"${UE4_ENGINE_ROOT}/Engine/Binaries/DotNET/UnrealBuildTool.exe"  \
+ ${PROJECT_NAME} ${PLATFORM} ${BUILD_CONFIG}\
+ -project="${PROJECT_FILE}"      \
+ -editorrecompile -progress -noubtmakefiles -NoHotReloadFromIDE -2015
 
 
 CMD=" \
- "${UE4_ENGINE_ROOT}Engine/Build/BatchFiles/RunUAT.${EXT}" -ScriptsForProject="${PROJECT_FILE}" BuildCookRun \
+ '${UE4_ENGINE_ROOT}Engine/Build/BatchFiles/RunUAT.${EXT}' -ScriptsForProject='${PROJECT_FILE}' BuildCookRun \
  -NoCompileEditor -NoP4  -Verbose -UTF8Output -NoCompile \
- -project="${PROJECT_FILE}" \
- -cook -stage -archive -archivedirectory="${ARCHIVE_DIR}"     \
+ -project='${PROJECT_FILE}' \
+ -cook -stage -archive -archivedirectory='${ARCHIVE_DIR}'     \
  -package  -clientconfig=${BUILD_CONFIG} \
  -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
  -build -CrashReporter \
  "
 # -nocompile 
  #UAT flag, if we want to compile Source\Programs\AutomationTool
-echo =======execute: ${CMD}
-${CMD}
+
+eval ${CMD}
 
 popd #pushd ${PROJECT_ROOT}

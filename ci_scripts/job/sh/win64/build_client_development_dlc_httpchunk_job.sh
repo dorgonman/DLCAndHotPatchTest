@@ -45,10 +45,10 @@ echo "Current UE4_ENGINE_ROOT:${UE4_ENGINE_ROOT}"
 GIT_BRANCH=$(git symbolic-ref --short HEAD)
 GIT_REV_COUNT=$(git rev-list HEAD --count)
 BUILD_CONFIG="Development"
-PLATFORM="Win64"
+BUILD_PLATFORM="Win64"
 
 echo "-----------------------------------------------------"
-echo "start ${PLATFORM} build - branch=${GIT_BRANCH}, revision=${GIT_REV_COUNT}, CONFIG=${BUILD_CONFIG}"
+echo "start ${BUILD_PLATFORM} build - branch=${GIT_BRANCH}, revision=${GIT_REV_COUNT}, CONFIG=${BUILD_CONFIG}"
 echo "-----------------------------------------------------"
 
 
@@ -58,17 +58,18 @@ PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../../"; pwd)
 pushd ${PROJECT_ROOT}
 
 PROJECT_NAME=DLCAndHotPatchTest
-DLC_NAME=MyTestDlc1
+DLC_NAME=_DLCAndHotPatchTestDLC
 PROJECT_FILE="${PROJECT_ROOT}/${PROJECT_NAME}.uproject"
-ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/${DLC_NAME}"
+ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${BUILD_PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/${DLC_NAME}"
 mkdir -p ${ARCHIVE_DIR}
 ARCHIVE_DIR=$(cd "${ARCHIVE_DIR}"; pwd)
 
 EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Source/Util/get_shell_ext.py)
 
 
+
 "${UE4_ENGINE_ROOT}/Engine/Binaries/DotNET/UnrealBuildTool.exe"  \
- ${PROJECT_NAME} ${PLATFORM} ${BUILD_CONFIG}\
+ ${PROJECT_NAME} ${BUILD_PLATFORM} ${BUILD_CONFIG}\
  -project="${PROJECT_FILE}"      \
  -editorrecompile -progress -noubtmakefiles -NoHotReloadFromIDE -2015
 
@@ -81,6 +82,9 @@ CMD=" \
  -package  -clientconfig=${BUILD_CONFIG} \
  -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
  -build  -basedonreleaseversion=${PLATFORM}  -dlcname=${DLC_NAME} \
+ -createchunkinstall  \
+ -chunkinstalldirectory=${ARCHIVE_DIR}/ \
+ -chunkinstallversion=${GIT_BRANCH}.${GIT_REV_COUNT}.${BUILD_CONFIG} \
  "
 # -nocompile 
  #UAT flag, if we want to compile Source\Programs\AutomationTool

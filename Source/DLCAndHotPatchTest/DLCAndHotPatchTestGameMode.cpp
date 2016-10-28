@@ -6,3 +6,10 @@
 
 
 
+void ADLCAndHotPatchTestGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+	IPlatformFile& InnerPlatform = FPlatformFileManager::Get().GetPlatformFile();
+	//InnerPlatform.
+
+}

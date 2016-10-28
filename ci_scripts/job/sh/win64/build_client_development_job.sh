@@ -45,21 +45,21 @@ echo "Current UE4_ENGINE_ROOT:${UE4_ENGINE_ROOT}"
 GIT_BRANCH=$(git symbolic-ref --short HEAD)
 GIT_REV_COUNT=$(git rev-list HEAD --count)
 BUILD_CONFIG="Development"
-PLATFORM="Win64"
-
+BUILD_PLATFORM="Win64"
+PROJECT_NAME=DLCAndHotPatchTest
 echo "-----------------------------------------------------"
-echo "start ${PLATFORM} build - branch=${GIT_BRANCH}, revision=${GIT_REV_COUNT}, CONFIG=${BUILD_CONFIG}"
+echo "start ${BUILD_PLATFORM} build - branch=${GIT_BRANCH}, revision=${GIT_REV_COUNT}, CONFIG=${BUILD_CONFIG}"
 echo "-----------------------------------------------------"
 
 
 
 BASE_PATH=$(cd "$(dirname "$0")"; pwd)
-PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../"; pwd)
+PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../../"; pwd)
 pushd ${PROJECT_ROOT}
 
-PROJECT_NAME=DLCAndHotPatchTest
+
 PROJECT_FILE="${PROJECT_ROOT}/${PROJECT_NAME}.uproject"
-ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/"
+ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${BUILD_PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/"
 mkdir -p ${ARCHIVE_DIR}
 ARCHIVE_DIR=$(cd "${ARCHIVE_DIR}"; pwd)
 
@@ -68,7 +68,7 @@ EXT=$(python ./ci_scripts/function/python/HorizonBuildTool/HorizonBuildTool/Sour
 
 
 "${UE4_ENGINE_ROOT}/Engine/Binaries/DotNET/UnrealBuildTool.exe"  \
- ${PROJECT_NAME} ${PLATFORM} ${BUILD_CONFIG}\
+ ${PROJECT_NAME} ${BUILD_PLATFORM} ${BUILD_CONFIG}\
  -project="${PROJECT_FILE}"      \
  -editorrecompile -progress -noubtmakefiles -NoHotReloadFromIDE -2015
 
@@ -79,8 +79,8 @@ CMD=" \
  -project='${PROJECT_FILE}' \
  -cook -map= -unversionedcookedcontent -pak -compressed -stage -archive -archivedirectory='${ARCHIVE_DIR}'     \
  -package  -clientconfig=${BUILD_CONFIG} \
- -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
- -build  -createreleaseversion=${PLATFORM} \
+ -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${BUILD_PLATFORM}        \
+ -build  -createreleaseversion=${BUILD_PLATFORM} \
  "
 # -nocompile 
  #UAT flag, if we want to compile Source\Programs\AutomationTool

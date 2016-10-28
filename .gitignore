@@ -12,4 +12,4 @@ Saved
 /.vs/config/applicationhost.config
 /*.db
 /PersistentDownloadDir
-.pak
+*.pak

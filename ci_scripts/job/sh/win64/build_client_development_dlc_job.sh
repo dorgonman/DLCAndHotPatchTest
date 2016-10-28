@@ -54,13 +54,13 @@ echo "-----------------------------------------------------"
 
 
 BASE_PATH=$(cd "$(dirname "$0")"; pwd)
-PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../../"; pwd)
+PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../"; pwd)
 pushd ${PROJECT_ROOT}
 
 PROJECT_NAME=DLCAndHotPatchTest
 DLC_NAME=_DLCAndHotPatchTestDLC
 PROJECT_FILE="${PROJECT_ROOT}/${PROJECT_NAME}.uproject"
-ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${BUILD_PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/${DLC_NAME}"
+ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${BUILD_PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/dlc/${DLC_NAME}"
 mkdir -p ${ARCHIVE_DIR}
 ARCHIVE_DIR=$(cd "${ARCHIVE_DIR}"; pwd)
 
@@ -90,10 +90,10 @@ eval ${CMD}
 
 
 
-#PACKAGED_PLATFROM=WindowsNoEditor
-#PAK_FILE=${ARCHIVE_DIR}/${PACKAGED_PLATFROM}/${PROJECT_NAME}/Content/Paks/${PROJECT_NAME}-${PACKAGED_PLATFROM}.pak
-#[ -f ${PAK_FILE} ] && echo "Found" || echo "Not found"
-#mv ${PAK_FILE} \
-#   ${ARCHIVE_DIR}/${PACKAGED_PLATFROM}/${PROJECT_NAME}/Content/Paks/${DLC_NAME}-${PACKAGED_PLATFROM}.pak
+PACKAGED_PLATFROM=WindowsNoEditor
+PAK_FILE=${ARCHIVE_DIR}/${PACKAGED_PLATFROM}/${PROJECT_NAME}/Content/Paks/${PROJECT_NAME}-${PACKAGED_PLATFROM}.pak
+[ -f ${PAK_FILE} ] && echo "Found" || echo "Not found"
+mv ${PAK_FILE} \
+   ${ARCHIVE_DIR}/${PACKAGED_PLATFROM}/${PROJECT_NAME}/Content/Paks/${DLC_NAME}-${PACKAGED_PLATFROM}.pak
 
 popd #pushd ${PROJECT_ROOT}

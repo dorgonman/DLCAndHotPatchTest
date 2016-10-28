@@ -54,7 +54,7 @@ echo "-----------------------------------------------------"
 
 
 BASE_PATH=$(cd "$(dirname "$0")"; pwd)
-PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../../"; pwd)
+PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../"; pwd)
 pushd ${PROJECT_ROOT}
 
 PROJECT_NAME=DLCAndHotPatchTest

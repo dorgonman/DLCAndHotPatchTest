@@ -7,8 +7,8 @@ public class DLCAndHotPatchTest : ModuleRules
 	public DLCAndHotPatchTest(TargetInfo Target)
 	{
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
-
-		PrivateDependencyModuleNames.AddRange(new string[] { "BuildPatchServices" });
+        PrivateDependencyModuleNames.AddRange(new string[] { "BuildPatchServices" });
+        PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystem", "Hotfix" });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

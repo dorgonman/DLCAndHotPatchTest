@@ -54,13 +54,13 @@ echo "-----------------------------------------------------"
 
 
 BASE_PATH=$(cd "$(dirname "$0")"; pwd)
-PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../../"; pwd)
+PROJECT_ROOT=$(cd "${BASE_PATH}/../../../../"; pwd)
 pushd ${PROJECT_ROOT}
 
 PROJECT_NAME=DLCAndHotPatchTest
 DLC_NAME=_DLCAndHotPatchTestDLC
 PROJECT_FILE="${PROJECT_ROOT}/${PROJECT_NAME}.uproject"
-ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${BUILD_PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/${DLC_NAME}"
+ARCHIVE_DIR="${PROJECT_ROOT}/../${PROJECT_NAME}_ci_build/${BUILD_PLATFORM}/${GIT_BRANCH}/${GIT_REV_COUNT}/${BUILD_CONFIG}/dlc/httpchunk/${DLC_NAME}"
 mkdir -p ${ARCHIVE_DIR}
 ARCHIVE_DIR=$(cd "${ARCHIVE_DIR}"; pwd)
 
@@ -81,7 +81,7 @@ CMD=" \
  -cook -map= -unversionedcookedcontent -pak -compressed -stage -archive -archivedirectory='${ARCHIVE_DIR}'     \
  -package  -clientconfig=${BUILD_CONFIG} \
  -SKIPEDITORCONTENT -pak -prereqs -nodebuginfo -targetplatform=${PLATFORM}        \
- -build  -basedonreleaseversion=${PLATFORM}  -dlcname=${DLC_NAME} \
+ -build  -basedonreleaseversion=${BUILD_PLATFORM}  -dlcname=${DLC_NAME} \
  -createchunkinstall  \
  -chunkinstalldirectory=${ARCHIVE_DIR}/ \
  -chunkinstallversion=${GIT_BRANCH}.${GIT_REV_COUNT}.${BUILD_CONFIG} \

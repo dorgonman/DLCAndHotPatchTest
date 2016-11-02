@@ -4,7 +4,7 @@
 
 #include "GameFramework/PlayerController.h"
 #include "MyPlayerController.generated.h"
-
+class UUpdateManager;
 /**
  * 
  */
@@ -15,6 +15,6 @@ class DLCANDHOTPATCHTEST_API AMyPlayerController : public APlayerController
 	
 public:
 	virtual void BeginPlay() override;
-	
-	
+	UPROPERTY()
+	UUpdateManager* UpdateManager;
 };

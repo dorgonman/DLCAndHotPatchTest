@@ -12,6 +12,7 @@ UCLASS()
 class DLCANDHOTPATCHTEST_API ADLCAndHotPatchTestGameMode : public AGameMode
 {
 	GENERATED_BODY()
+	ADLCAndHotPatchTestGameMode();
 public:
 	virtual void BeginPlay() override;
 	

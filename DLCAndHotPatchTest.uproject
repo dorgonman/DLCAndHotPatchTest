@@ -22,10 +22,16 @@
 			"Name": "_DLCAndHotPatchTestDLC",
 			"Enabled": true
 		},
-		{
-			"Name": "HorizonTweenPlugin",
-			"Enabled": false,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/3c3a469e7e4e48daa2fcaf6a19b4d1a8"
-		}
+    {
+      "Name": "HorizonTweenPlugin",
+      "Enabled": false,
+      "MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/3c3a469e7e4e48daa2fcaf6a19b4d1a8"
+    },
+    {
+      "Name": "OnlineFramework",
+      "Enabled": true,
+       "MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/3c3a469e7e4e48daa2fcaf6a19b4d1a8"
+    }
+    
 	]
 }

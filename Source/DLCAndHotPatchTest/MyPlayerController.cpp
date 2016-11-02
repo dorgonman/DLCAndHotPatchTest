@@ -27,9 +27,9 @@ void AMyPlayerController::BeginPlay()
 	auto manifestPath = FPaths::ConvertRelativePathToFull(FPaths::GamePersistentDownloadDir() + "/DLCAndHotPatchTest.manifest");
 	auto manifestPtr = BuildPatchServices->LoadManifestFromFile(manifestPath);
 
-	UE_LOG(LogTemp, Log, TEXT("Project Name: %s"), *manifestPtr->GetAppName());
-	FString appName = manifestPtr->GetAppName();
-	UUpdateManager* update = NewObject<UUpdateManager>();
-
-	UE_LOG(LogTemp, Log, TEXT("Project Name: %s"), *manifestPtr->GetAppName());
+//	UE_LOG(LogTemp, Log, TEXT("Project Name: %s"), *manifestPtr->GetAppName());
+	//FString appName = manifestPtr->GetAppName();
+	UpdateManager = NewObject<UUpdateManager>();
+	UpdateManager->StartCheck();
+	UE_LOG(LogTemp, Log, TEXT("Project Name: %s"), "test");
 }

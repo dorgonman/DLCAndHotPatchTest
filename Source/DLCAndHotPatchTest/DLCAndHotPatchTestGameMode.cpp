@@ -2,6 +2,12 @@
 
 #include "DLCAndHotPatchTest.h"
 #include "DLCAndHotPatchTestGameMode.h"
+#include "MyPlayerController.h"
+ADLCAndHotPatchTestGameMode::ADLCAndHotPatchTestGameMode() 
+{
+	PlayerControllerClass = AMyPlayerController::StaticClass();
+
+}
 
 void ADLCAndHotPatchTestGameMode::BeginPlay()
 {

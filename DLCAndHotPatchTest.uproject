@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.13",
+	"EngineAssociation": "{F9533B89-4D06-01E3-D3A6-D6B1D1035F18}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "DLCAndHotPatchTest",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
@@ -18,6 +21,11 @@
 		{
 			"Name": "_DLCAndHotPatchTestDLC",
 			"Enabled": true
+		},
+		{
+			"Name": "HorizonTweenPlugin",
+			"Enabled": false,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/3c3a469e7e4e48daa2fcaf6a19b4d1a8"
 		}
 	]
 }
